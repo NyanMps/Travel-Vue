@@ -5,7 +5,7 @@
         <!-- border-bottom 一像素边框-->
         <li
           class="item border-bottom"
-          v-for="item of RecommendList"
+          v-for="item of recommendList"
           :key="item.id"
         >
           <img class="item-img" :src="item.imgUrl" />
@@ -22,25 +22,8 @@
 <script>
 export default {
   name: 'HomeRecommend',
-  data () {
-    return {
-      RecommendList: [{
-        id: 1,
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/201402/25/aafec297c9838bab7c5ba84b1cbaad57.jpg_250x250_c1ae475d.jpg',
-        desc: '描述描述这是描述1',
-        title: '标题这是标题1'
-      }, {
-        id: 2,
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/201402/25/aafec297c9838bab7c5ba84b1cbaad57.jpg_250x250_c1ae475d.jpg',
-        desc: '描述描述这是描述2',
-        title: '标题这是标题2'
-      }, {
-        id: 3,
-        imgUrl: 'http://img1.qunarzz.com/sight/p0/201402/25/aafec297c9838bab7c5ba84b1cbaad57.jpg_250x250_c1ae475d.jpg',
-        desc: '描述描述这是描述3',
-        title: '标题这是标题3'
-      }]
-    }
+  props: {
+    recommendList: Array
   }
 }
 </script>
