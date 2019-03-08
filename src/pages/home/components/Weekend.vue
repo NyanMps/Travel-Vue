@@ -5,7 +5,7 @@
       <!-- border-bottom 一像素边框-->
       <li
         class="border-bottom"
-        v-for="item of WeekendList"
+        v-for="item of weekendList"
         :key="item.id"
       >
         <div class="img-wrapper">
@@ -23,25 +23,8 @@
 <script>
 export default {
   name: 'HomeWeekend',
-  data () {
-    return {
-      WeekendList: [{
-        id: 1,
-        imgUrl: 'http://img1.qunarzz.com/sight/source/1505/ef/815eec316c47c4.jpg_r_640x214_5bf7f999.jpg',
-        desc: '描述描述这是描述1',
-        title: '标题这是标题1'
-      }, {
-        id: 2,
-        imgUrl: 'http://img1.qunarzz.com/sight/source/1505/ef/815eec316c47c4.jpg_r_640x214_5bf7f999.jpg',
-        desc: '描述描述这是描述2',
-        title: '标题这是标题2'
-      }, {
-        id: 3,
-        imgUrl: 'http://img1.qunarzz.com/sight/source/1505/ef/815eec316c47c4.jpg_r_640x214_5bf7f999.jpg',
-        desc: '描述描述这是描述3',
-        title: '标题这是标题3'
-      }]
-    }
+  props: {
+    weekendList: Array
   }
 }
 </script>
