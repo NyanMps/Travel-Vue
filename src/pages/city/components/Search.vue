@@ -5,7 +5,10 @@
     </div>
     <div class="search-content" ref="search" v-show="keyword">
       <ul>
-        <li class="search-item border-bottom" v-for="item of list" :key="item.id">{{item.name}}</li>
+        <li class="search-item border-bottom"
+            v-for="item of list" :key="item.id"
+            @click="handleClick(item.name)"
+        >{{item.name}}</li>
         <li class="search-item border-bottom" v-show="!list.length">没有找到匹配数据</li>
       </ul>
     </div>
@@ -18,6 +21,14 @@ export default {
   name: 'CitySearch',
   props: {
     cities: Object
+  },
+  methods: {
+    handleClick (name) {
+      // 使用 Vuex 改变全局数据
+      this.$store.dispatch('changeCity', name)
+      // 跳转回首页
+      this.$router.push('/')
+    }
   },
   data () {
     return {
