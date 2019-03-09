@@ -25,12 +25,13 @@ export default {
       swiperList: [],
       iconsList: [],
       recommendList: [],
-      weekendList: []
+      weekendList: [],
+      lastCity: ''
     }
   },
   methods: {
     getHomeInfo () {
-      Axios.get('/api/index.json')
+      Axios.get('/api/index.json?city=')
         .then(this.getHomeInfoCallback)
     },
     getHomeInfoCallback (res) {
@@ -47,6 +48,14 @@ export default {
   mounted () {
     // 生命周期函数，挂载后执行
     this.getHomeInfo()
+    this.lastCity = this.city
+  },
+  activated () {
+    // 使用 keep-alive 后特有的生命周期
+    if (this.lastCity !== this.city) {
+      this.getHomeInfo()
+      this.lastCity = this.city
+    }
   }
 }
 </script>
