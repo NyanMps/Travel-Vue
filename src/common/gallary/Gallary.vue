@@ -27,7 +27,7 @@ export default {
         paginationType: 'fraction',
         // 自身或者父元素发生 dom 变化，自动刷新
         observer: true,
-        observerParents: true,
+        observeParents: true,
         loop: false
       }
     }
