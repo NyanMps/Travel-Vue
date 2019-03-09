@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     getHomeInfo () {
-      Axios.get('/api/index.json?city=')
+      Axios.get('/api/index.json?city=' + this.$store.state.city)
         .then(this.getHomeInfoCallback)
     },
     getHomeInfoCallback (res) {
@@ -46,13 +46,13 @@ export default {
   mounted () {
     // 生命周期函数，挂载后执行
     this.getHomeInfo()
-    this.lastCity = this.city
+    this.lastCity = this.$store.state.city
   },
   activated () {
     // 使用 keep-alive 后特有的生命周期
-    if (this.lastCity !== this.city) {
+    if (this.lastCity !== this.$store.state.city) {
       this.getHomeInfo()
-      this.lastCity = this.city
+      this.lastCity = this.$store.state.city
     }
   }
 }
