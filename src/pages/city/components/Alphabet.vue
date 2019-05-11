@@ -1,9 +1,10 @@
 <template>
     <ul class="list">
+      <!--使用 prevent 阻止事件的默认行为，修复手机端 bug-->
       <li class="item"
           :ref="data"
           @click="handleClick"
-          @touchstart="handleTouchStart"
+          @touchstart.prevent="handleTouchStart"
           @touchmove="handleTouchMove"
           @touchend="handleTouchEnd"
           v-for="data of letters"
