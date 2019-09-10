@@ -38,9 +38,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ```javascript
  import Vue from 'vue'
  import Router from 'vue-router'
- 
+
  Vue.use(Router)
- 
+
  export default new Router({
    routes: [
      {
@@ -66,3 +66,24 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
  ```
 
 即，把 `import Router from 'vue-router'` 更换为箭头函数 `() => import('@/xxx')`
+
+## 补充
+某些场景，例如字母表滑动选择、实时搜索，这些绑定的事件会被频繁的调用，为优化效率，我们可以对其做削峰或者叫函数截流进行处理；
+就是利用 setTimeout 的特性
+
+``` javascript
+// 定义的局部变量来控制
+let timer
+
+// 避免第一次执行时的 NPE
+if (this.timer) {
+  // 当 timer 在指定的延迟内还没有执行时，又进行了调用，则会取消上次执行
+  // 如果已经执行，那....就执行了，也会先 clear，再进行下面的赋值
+  clearTimeout(this.timer)
+}
+
+// 设置 timer 新的延迟执行方案
+this.timer = setTimeout(() => {
+  // do sth
+}, 16)
+```
