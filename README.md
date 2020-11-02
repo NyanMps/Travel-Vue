@@ -67,6 +67,28 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 即，把 `import Router from 'vue-router'` 更换为箭头函数 `() => import('@/xxx')`
 
+---
+
+新版中，不再推荐使用 scrollBehavior，因为作者在 issues 中说 vue-router 不再支持这个特性了。
+可以使用钩子的方式来实现：
+
+``` js
+/* eslint-disable */
+// main.js中， 全局路由钩子
+router.afterEach((to, from) => {
+  let bodySrcollTop = document.body.scrollTop
+  if (bodySrcollTop !== 0) {
+    document.body.scrollTop = 0
+    return
+  }
+  let docSrcollTop = document.documentElement.scrollTop
+  if (docSrcollTop !== 0) {
+    document.documentElement.scrollTop = 0
+  }
+})
+/* eslint-disable */
+```
+
 ## 补充
 某些场景，例如字母表滑动选择、实时搜索，这些绑定的事件会被频繁的调用，为优化效率，我们可以对其做削峰或者叫函数截流进行处理；
 就是利用 setTimeout 的特性
